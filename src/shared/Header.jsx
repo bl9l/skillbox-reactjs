@@ -9,6 +9,7 @@ function HeaderComponent() {
         <Example/>
         <h1 className={styles.example}>Reddit for our own))) _</h1>
         <h1 className={stylesScss.example}>scss Reddit for our own))) _</h1>
+        <h1 className={stylesScss.helloReact}>Hello React</h1>
     </header>);
 }
 
