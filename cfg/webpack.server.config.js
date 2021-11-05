@@ -1,7 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-
-const NODE_ENV = process.env.NODE_ENV;
+const {NODE_ENV, GLOBAL_SCSS_REGEXP} = require("./webpack.base.config");
 
 module.exports = {
     target: 'node',
@@ -34,6 +33,14 @@ module.exports = {
                         }
                     },
                     'sass-loader'
+                ],
+                exclude: GLOBAL_SCSS_REGEXP,
+            },
+            {
+                test: GLOBAL_SCSS_REGEXP,
+                use: [
+                    'css-loader',
+                    'sass-loader',
                 ]
             }
         ]
