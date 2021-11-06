@@ -1,0 +1,20 @@
+@use "src/styles/utils" as utils;
+
+.menuDotsContainer {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:hover, &:active {
+    background-color: var(--grayF3);
+  }
+}
+
+.menuDots {
+  @include utils.media-breakpoint-up(sm) {
+    transform: rotate(90deg);
+  }
+}

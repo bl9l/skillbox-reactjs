@@ -1,10 +1,99 @@
+@use "src/styles/utils" as utils;
+
 .card {
   background-color: var(--white);
   border-radius: 7px;
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  align-items: start;
+
+  @include utils.media-breakpoint-up(sm) {
+    margin-bottom: 40px;
+    padding: 0 40px;
+    padding-top: 20px;
+    align-items: center;
+  }
+  @include utils.media-breakpoint-up(xl) {
+    padding: 0 60px;
+  }
 }
 
-.card > * {
-  flex: 1 1 100%;
+.textContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-left: 20px;
+
+  @include utils.media-breakpoint-up(sm) {
+    padding-left: 38px;
+  }
+}
+
+.viewedAt {
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--gray99);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  @include utils.media-breakpoint-up(sm) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.title {
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 9px;
+  max-width: fit-content;
+
+  @include utils.media-breakpoint-up(sm) {
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 10px;
+  }
+}
+
+.cardPublicationInfo {
+  order: -1;
+
+  @include utils.media-breakpoint-up(sm) {
+    order: initial;
+  }
+}
+
+.cardMenu {
+  align-items: center; justify-content: center;
+  height: 100%;
+  padding-right: 20px;
+}
+
+.previewImage {
+  display: inline-block;
+  width: 100%;
+
+  @include utils.media-breakpoint-up(sm) {
+    order: -1;
+    width: initial;
+  }
+}
+
+.controls {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  @include utils.media-breakpoint-up(sm) {
+    width: initial;
+    height: initial;
+    padding: initial;
+  }
 }

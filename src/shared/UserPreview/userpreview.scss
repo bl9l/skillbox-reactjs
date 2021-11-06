@@ -1,0 +1,19 @@
+@use "src/styles/utils" as utils;
+
+.userPreview {
+}
+
+.userPreviewImage {
+  width: 20px;
+  height: 20px;
+  object-position: center;
+  object-fit: cover;
+  margin-right: 7px;
+  display: inline;
+  vertical-align: bottom;
+  border-radius: 50%;
+}
+
+.link {
+  color: var(--orange);
+}

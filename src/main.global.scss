@@ -4,6 +4,7 @@
   --black:      #333333;
   --white:      #ffffff;
   --orange:     #cc6633;
+  --red:        #cc3361;
   --green:      #a4cc33;
   --grayF4:     #f4f4f4;
   --grayF3:     #f3f3f3;
@@ -33,6 +34,10 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
 }
 
 a {

@@ -1,0 +1,14 @@
+@use "src/styles/utils" as utils;
+
+.cardPreviewImage {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 178px;
+
+  @include utils.media-breakpoint-up(sm) {
+    width: 190px;
+    height: 107px;
+    border-radius: 3px;
+  }
+}
