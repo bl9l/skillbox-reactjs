@@ -4,12 +4,13 @@ import {Layout} from "./shared/Layout/Layout";
 import './main.global.scss';
 import {Header} from "./shared/Header";
 import {Content} from "./shared/Content";
+import {CardsList} from "./shared/CardsList";
 
 function AppComponent() {
   return <Layout>
     <Header />
     <Content>
-      content
+      <CardsList/>
     </Content>
   </Layout>
 }

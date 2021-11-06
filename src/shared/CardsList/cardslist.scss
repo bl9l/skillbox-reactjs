@@ -1,8 +1,7 @@
 @use "src/styles/utils" as utils;
 
 @include utils.media-breakpoint-up(sm) {
-  .content {
-    background-color: var(--white);
-    border-radius: 7px 7px 0 0;
+  .cardsList {
+    padding: 40px 0;
   }
 }

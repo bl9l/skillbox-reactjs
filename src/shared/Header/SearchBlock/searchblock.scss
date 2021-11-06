@@ -1,3 +1,5 @@
+@use "src/styles/utils" as utils;
+
 .searchBlock {
   display: flex;
   flex-flow: row nowrap;
@@ -10,7 +12,7 @@
   margin: 0 0 38px;
 }
 
-@media all and (min-width: 1020px) {
+@include utils.media-breakpoint-up(sm) {
   .searchBlock {
     padding: 0;
     margin: 0 0 0 auto;

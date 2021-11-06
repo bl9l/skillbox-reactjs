@@ -1,4 +1,6 @@
-@media all and (min-width: 1024px) {
+@use "src/styles/utils" as utils;
+
+@include utils.media-breakpoint-up(sm){
   .header {
     display: flex;
     flex-flow: row nowrap;
@@ -7,7 +9,7 @@
   }
 }
 
-@media all and (min-width: 1540px) {
+@include utils.media-breakpoint-up(xl) {
   .header {
     padding: 67px 0;
   }
