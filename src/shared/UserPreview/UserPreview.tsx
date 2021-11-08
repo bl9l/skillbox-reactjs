@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './userpreview.scss';
+import {ICardData} from "../CardsList/Card";
 
-export function UserPreview() {
+export function UserPreview({data}: {data: ICardData['userData']}) {
   return (
     <span className={styles.userPreview}>
       <img
         className={styles.userPreviewImage}
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6JlDm6KyOLBirUr0viGpfFJsCH4yFlAa9Rw&usqp=CAU"
+        src={data.avatar}
         alt="small avatar"
       />
-      <a href="#" className={styles.link}>
-        Станислав Грачёв
+      <a href={data.profileUrl} className={styles.link}>
+        {data.name}
       </a>
     </span>
   );

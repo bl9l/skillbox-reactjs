@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from './cardpublicationinfo.scss';
 import {UserPreview} from "../../../UserPreview";
+import {ICardsProps} from "../Card";
 
-export function CardPublicationInfo() {
+export function CardPublicationInfo({data}: ICardsProps) {
   return (
     <p className={styles.publicationInfo}>
       <span>
         <span className={styles.publishedWord}>
           опубликовано
         </span>
-        5 часов назад 
+        {data.hoursSinsPublication} часов назад 
       </span>
-      <UserPreview/>
+      <UserPreview data={data.userData}/>
     </p>
   );
 }
