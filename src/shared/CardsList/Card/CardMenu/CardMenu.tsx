@@ -1,6 +1,13 @@
 import React from 'react';
 import styles from './cardmenu.scss';
 import {Dropdown} from "../../../Dropdown";
+import {ListItemUnderline} from "../../../Dropdown/ListItemUnderline";
+import MessagesIcon from '../../../../assets/messages.svg';
+import ShareIcon from '../../../../assets/share.svg';
+import HideIcon from '../../../../assets/hide.svg';
+import SaveIcon from '../../../../assets/save.svg';
+import WarningIcon from '../../../../assets/warning.svg';
+import {ListItemClose} from "../../../Dropdown/ListItemClose";
 
 export function CardMenu() {
   return (
@@ -13,7 +20,12 @@ export function CardMenu() {
         </svg>
       </a>
     }>
-      qwe
+      <ListItemUnderline icon={MessagesIcon} text='Комментарии'/>
+      <ListItemUnderline icon={ShareIcon} text='Поделиться'/>
+      <ListItemUnderline icon={HideIcon} text='Скрыть'/>
+      <ListItemUnderline icon={SaveIcon} text='Сохранить'/>
+      <ListItemUnderline icon={WarningIcon} text='Пожаловаться'/>
+      <ListItemClose text='Закрыть'/>
     </Dropdown>
   );
 }

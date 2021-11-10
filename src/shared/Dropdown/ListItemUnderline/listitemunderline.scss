@@ -1,0 +1,44 @@
+$containerPadding: 20px;
+
+.listItem {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+  padding: 0 $containerPadding;
+  position: relative;
+  height: 37px;
+  background-color: var(--white);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--gray99);
+
+  &:hover {
+    color: var(--orange);
+  }
+
+  img {
+    width: 16px;
+    height: 14px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: baseline;
+    margin-right: 6px;
+  }
+
+  &:last-of-type {
+    &:after {
+      content: initial;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: $containerPadding;
+    right: $containerPadding;
+    height: 1px;
+    bottom: 0;
+    background-color: var(--grayD9);
+  }
+}
