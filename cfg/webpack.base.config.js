@@ -27,6 +27,8 @@ module.exports.fileLoader = {
             loader: 'file-loader',
             options: {
                 name: 'images/[hash]-[name].[ext]',
+                publicPath: 'static',
+                outputPath: 'static',
             },
         },
     ],
