@@ -6,6 +6,7 @@ import {VoteControl} from "./Controls/VoteControl";
 import {CardPublicationInfo} from "./CardPublicationInfo";
 
 export interface ICardData {
+  id: number;
   title: string;
   hoursSinsLastView: number;
   hoursSinsPublication: number;
@@ -38,7 +39,7 @@ export function Card({data}: ICardsProps) {
         </p>
       </div>
       <div className={styles.cardMenu}>
-        <CardMenu/>
+        <CardMenu id={data.id}/>
       </div>
       <div className={styles.previewImage}>
         <CardPreviewImage src={data.previewUrl}/>

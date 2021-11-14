@@ -1,0 +1,28 @@
+@use "utils" as utils;
+$displays: (
+  none
+  block
+  flex
+);
+
+@mixin make-display {
+  @each $bp, $_ in utils.$breakpoints {
+    .d {
+      @each $display in $displays {
+        &-#{$display} {
+          display: $display !important;
+        }
+      }
+      @include utils.media-breakpoint-up($bp) {
+        &-#{$bp} {
+          @each $display in $displays {
+            &-#{$display} {
+              display: $display !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

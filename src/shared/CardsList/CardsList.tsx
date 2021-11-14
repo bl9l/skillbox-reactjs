@@ -3,6 +3,7 @@ import styles from './cardslist.scss';
 import {Card, ICardData} from "./Card";
 
 const cardData: ICardData = {
+  id: 1,
   title: 'Но представители современных социальных течений',
   previewUrl: 'https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg',
   hoursSinsLastView: 3,
