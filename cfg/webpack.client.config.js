@@ -1,7 +1,7 @@
 const path = require('path');
 const {HotModuleReplacementPlugin} = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const {IS_DEV, IS_PROD, NODE_ENV, GLOBAL_SCSS_REGEXP} = require("./webpack.base.config");
+const {IS_DEV, IS_PROD, NODE_ENV, GLOBAL_SCSS_REGEXP, fileLoader} = require("./webpack.base.config");
 
 function setupDevtool() {
     if(IS_DEV) return 'eval';
@@ -55,7 +55,8 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ]
-            }
+            },
+            fileLoader,
         ]
     },
     devtool: setupDevtool(),

@@ -1,0 +1,13 @@
+.listItemClose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    position: relative;
+    height: 37px;
+    background-color: var(--gray99);
+    color: var(--gray66);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 16px;
+}
