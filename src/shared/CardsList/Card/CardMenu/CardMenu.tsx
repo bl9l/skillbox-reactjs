@@ -2,29 +2,41 @@ import React from 'react';
 import styles from './cardmenu.scss';
 import {Dropdown} from "../../../Dropdown";
 import {ListItemUnderline} from "../../../Dropdown/ListItemUnderline";
-import MessagesIcon from '../../../../assets/messages.svg';
-import ShareIcon from '../../../../assets/share.svg';
-import HideIcon from '../../../../assets/hide.svg';
-import SaveIcon from '../../../../assets/save.svg';
-import WarningIcon from '../../../../assets/warning.svg';
 import {ListItemClose} from "../../../Dropdown/ListItemClose";
+import {Icon, Icons} from "../../../Icon";
+import MenuDotsIcon from '../../../../assets/menu-dots.svg';
+import {ICardData} from "../Card";
 
-export function CardMenu() {
+
+interface ICardMenuProps {
+  id: ICardData["id"];
+}
+
+export function CardMenu({id}: ICardMenuProps) {
+
+  const handleClick = (action: string) => () => console.log(action, id);
+
   return (
     <Dropdown button={
       <a className={styles.menuDotsContainer}>
-        <svg className={styles.menuDots} width="20" height="5" viewBox="0 0 20 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17.5" cy="2.5" r="2.5" transform="rotate(90 17.5 2.5)" fill="#D9D9D9"/>
-          <circle cx="10" cy="2.5" r="2.5" transform="rotate(90 10 2.5)" fill="#D9D9D9"/>
-          <circle cx="2.5" cy="2.5" r="2.5" transform="rotate(90 2.5 2.5)" fill="#D9D9D9"/>
-        </svg>
+        <img src={MenuDotsIcon} alt=""/>
       </a>
     }>
-      <ListItemUnderline icon={MessagesIcon} text='Комментарии'/>
-      <ListItemUnderline icon={ShareIcon} text='Поделиться'/>
-      <ListItemUnderline icon={HideIcon} text='Скрыть'/>
-      <ListItemUnderline icon={SaveIcon} text='Сохранить'/>
-      <ListItemUnderline icon={WarningIcon} text='Пожаловаться'/>
+      <ListItemUnderline onClick={handleClick('Комментарии')} className='d-none d-sm-flex'>
+        <Icon icon={Icons.Messages}/>Комментарии
+      </ListItemUnderline>
+      <ListItemUnderline onClick={handleClick('Поделиться')} className='d-none d-sm-flex'>
+        <Icon icon={Icons.Share}/>Поделиться
+      </ListItemUnderline>
+      <ListItemUnderline onClick={handleClick('Скрыть')}>
+        <Icon icon={Icons.Hide}/>Скрыть
+      </ListItemUnderline>
+      <ListItemUnderline onClick={handleClick('Сохранить')} className='d-none d-sm-flex'>
+        <Icon icon={Icons.Save}/>Сохранить
+      </ListItemUnderline>
+      <ListItemUnderline onClick={handleClick('Пожаловаться')}>
+        <Icon icon={Icons.Warning}/>Пожаловаться
+      </ListItemUnderline>
       <ListItemClose text='Закрыть'/>
     </Dropdown>
   );

@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import styles from './listitemunderline.scss';
 
-interface IListItemUnderlineProps {
-  icon: string;
-  text: string;
+
+interface IListItemUnderlineProps extends PropsWithChildren<{}>{
+  className?: string;
+  onClick: () => void;
 }
 
-export function ListItemUnderline({icon, text}: IListItemUnderlineProps) {
+export function ListItemUnderline({children, className = '', onClick = () => {}}: IListItemUnderlineProps) {
   return (
-    <div className={styles.listItem}>
-      <img src={icon} alt="Icon"/>
-      {text}
+    <div className={`${styles.listItem} ${className}`} onClick={onClick}>
+      {children}
     </div>
   );
 }
