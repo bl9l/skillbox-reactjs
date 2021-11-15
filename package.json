@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "env NODE_ENV=development node bin/dev.js",
+    "build:dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw webpack --config webpack.config.js",
+    "build:prod": "env NODE_ENV=production CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw webpack --config webpack.config.js",
+    "dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw node bin/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,19 +1,6 @@
 @use 'styles/display' as display;
+@use 'styles/utils' as utils;
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-:root {
-  --black:      #333333;
-  --white:      #ffffff;
-  --orange:     #cc6633;
-  --red:        #cc3361;
-  --green:      #a4cc33;
-  --grayF4:     #f4f4f4;
-  --grayF3:     #f3f3f3;
-  --grayD9:     #d9d9d9;
-  --grayC4:     #c4c4c4;
-  --gray99:     #999999;
-  --gray66:     #666666;
-}
 
 body {
   padding: 0;
@@ -46,3 +33,5 @@ a {
 }
 
 @include display.make-display;
+@include utils.make-global-colors;
+@include utils.make-global-text;
