@@ -1,4 +1,6 @@
 @use "utils" as utils;
+@use "variables" as vars;
+
 $displays: (
   none
   block
@@ -6,7 +8,7 @@ $displays: (
 );
 
 @mixin make-display {
-  @each $bp, $_ in utils.$breakpoints {
+  @each $bp, $_ in vars.$breakpoints {
     .d {
       @each $display in $displays {
         &-#{$display} {

@@ -1,7 +1,7 @@
 const path = require('path');
 const {HotModuleReplacementPlugin} = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const {IS_DEV, IS_PROD, NODE_ENV, GLOBAL_SCSS_REGEXP, fileLoader} = require("./webpack.base.config");
+const {IS_DEV, IS_PROD, NODE_ENV, GLOBAL_SCSS_REGEXP, fileLoader, webpackDefinePlugin} = require("./webpack.base.config");
 
 function setupDevtool() {
     if(IS_DEV) return 'eval';
@@ -64,10 +64,11 @@ module.exports = {
         ? [
             new CleanWebpackPlugin(),
             new HotModuleReplacementPlugin(),
+            webpackDefinePlugin
         ]
-        : [],
+        : [webpackDefinePlugin],
 
     watchOptions: {
         ignored: /dist/,
-    }
+    },
 };

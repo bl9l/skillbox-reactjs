@@ -1,6 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const {NODE_ENV, GLOBAL_SCSS_REGEXP, fileLoader} = require("./webpack.base.config");
+const {NODE_ENV, GLOBAL_SCSS_REGEXP, fileLoader, webpackDefinePlugin} = require("./webpack.base.config");
 
 module.exports = {
     target: 'node',
@@ -49,5 +49,8 @@ module.exports = {
     externals:  [nodeExternals()],
     optimization: {
         minimize: false,
-    }
+    },
+    plugins: [
+        webpackDefinePlugin
+    ]
 };

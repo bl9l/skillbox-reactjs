@@ -1,3 +1,5 @@
+const {DefinePlugin} = require('webpack');
+
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development';
 const IS_PROD = NODE_ENV === 'production';
@@ -9,6 +11,8 @@ module.exports = {
     IS_PROD,
     GLOBAL_SCSS_REGEXP,
 }
+
+module.exports.webpackDefinePlugin = new DefinePlugin({'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`})
 
 module.exports.cssLoader = {
     loader: 'css-loader',

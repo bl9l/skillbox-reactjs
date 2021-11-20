@@ -1,11 +1,35 @@
-
-$breakpoints: (
-  xl: 1540px,
-  sm: 1024px,
-);
+@use "variables" as var;
 
 @mixin media-breakpoint-up ($bp) {
-  @media all and (min-width: map-get($breakpoints, $bp)) {
+  @media all and (min-width: map-get(var.$breakpoints, $bp)) {
     @content
+  }
+}
+
+
+@mixin make-global-colors {
+  :root {
+    @each $clName, $clValue in var.$colors {
+      --#{"" + $clName}: #{$clValue};
+    }
+  }
+
+  @each $clName, $clValue in var.$colors {
+    .text {
+      &-#{"" + $clName} {
+        color: #{$clValue};
+      }
+    }
+  }
+}
+
+@mixin make-global-text {
+  @each $fontsize in var.$fontSizes {
+
+    .text {
+      &-size-#{$fontsize} {
+        font-size: #{$fontsize}px;
+      }
+    }
   }
 }
