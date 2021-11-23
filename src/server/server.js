@@ -23,12 +23,16 @@ app.get('/auth', (req, res) => {
         }
     )
         .then(({data}) => {
-            console.log(data)
             res.send(
                 indexTemplate(ReactDOM.renderToString(App()), data.access_token),
             );
         })
-        .catch(console.error);
+        .catch(e => {
+            console.log(e);
+            res.send(
+                indexTemplate(ReactDOM.renderToString(App())),
+            );
+        });
 });
 
 app.listen(3000, () => {

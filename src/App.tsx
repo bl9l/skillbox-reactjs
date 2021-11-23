@@ -6,15 +6,19 @@ import {Header} from "./shared/Header";
 import {Content} from "./shared/Content";
 import {CardsList} from "./shared/CardsList";
 import {useToken} from "./hooks/useToken";
+import {tokenContext} from "./contexts/tokenContext";
 
 function AppComponent() {
   const [token] = useToken();
-  return <Layout>
-    <Header token={token}/>
-    <Content>
-      <CardsList/>
-    </Content>
-  </Layout>
+  const {Provider} = tokenContext;
+  return <Provider value={token}>
+      <Layout>
+      <Header/>
+      <Content>
+        <CardsList/>
+      </Content>
+    </Layout>
+  </Provider>
 }
 
 export const App = hot(() => <AppComponent/>);
