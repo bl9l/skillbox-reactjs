@@ -17,4 +17,4 @@ function AppComponent() {
   </Layout>
 }
 
-export const App = hot(AppComponent);
+export const App = hot(() => <AppComponent/>);
