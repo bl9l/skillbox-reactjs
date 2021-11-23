@@ -9,8 +9,8 @@ interface IUserData {
 }
 
 export function useUserData() {
-  const [data, setData] = useState<IUserData>({});
   const token = useContext(tokenContext);
+  const [data, setData] = useState<IUserData>({});
 
   useEffect(() => {
     axios.get('https://oauth.reddit.com/api/v1/me', {

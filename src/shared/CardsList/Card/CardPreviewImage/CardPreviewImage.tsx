@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './cardpreviewimage.scss';
 
 interface ICardPreviewImageProps {
-  src: string;
+  src?: string;
 }
 
 export function CardPreviewImage({src}: ICardPreviewImageProps) {
