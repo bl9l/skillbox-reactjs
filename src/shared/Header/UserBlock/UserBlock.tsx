@@ -16,7 +16,7 @@ export function UserBlock({avatarSrc, username}: IUserBlockProps) {
       className={styles.userBox}
     >
       {avatarSrc
-        ? <img src={avatarSrc} alt="avatar"/>
+        ? <img src={avatarSrc} alt="avatar" className={styles.avatar}/>
         : <Icon icon={Icons.AvatarAnon} size={50}/>
       }
       <Text size={20} color={username ? EColors.black : EColors.gray99}>{username || 'Аноним'}</Text>

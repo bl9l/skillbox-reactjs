@@ -6,16 +6,16 @@ import {VoteControl} from "./Controls/VoteControl";
 import {CardPublicationInfo} from "./CardPublicationInfo";
 
 export interface ICardData {
-  id: number;
+  id: string;
   title: string;
-  hoursSinsLastView: number;
-  hoursSinsPublication: number;
+  hoursSinsLastView: number | null;
+  hoursSinsPublication: number | null;
   votesCount: number;
-  previewUrl: string;
+  previewUrl?: string;
   userData: {
     name: string;
     avatar: string;
-    profileUrl: string
+    profileUrl: string;
   }
 }
 
