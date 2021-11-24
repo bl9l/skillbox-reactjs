@@ -13,7 +13,7 @@ export function CardTitle({title}: ICardTitleProps) {
     <h2 className={styles.title} onClick={() => console.log('click')}>
       <a href="#" onClick={() => setIsModalOpened(true)}>{title}</a>
       {isModalOpened && (
-        <Post/>
+        <Post onClose={() => setIsModalOpened(false)}/>
       )}
     </h2>
   );
