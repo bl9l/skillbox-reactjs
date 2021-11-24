@@ -4,6 +4,7 @@ import {CardPreviewImage} from "./CardPreviewImage";
 import {CardMenu} from "./CardMenu";
 import {VoteControl} from "./Controls/VoteControl";
 import {CardPublicationInfo} from "./CardPublicationInfo";
+import {CardTitle} from "./CardTitle";
 
 export interface ICardData {
   id: string;
@@ -27,7 +28,7 @@ export function Card({data}: ICardsProps) {
   return (
     <li className={styles.card}>
       <div className={styles.textContent}>
-        <h2 className={styles.title}>{data.title}</h2>
+        <CardTitle title={data.title}/>
         <div className={styles.cardPublicationInfo}>
           <CardPublicationInfo data={data}/>
         </div>
