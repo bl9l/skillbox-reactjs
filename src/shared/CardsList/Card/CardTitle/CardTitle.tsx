@@ -10,7 +10,7 @@ export function CardTitle({title}: ICardTitleProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   return (
-    <h2 className={styles.title} onClick={() => console.log('click')}>
+    <h2 className={styles.title}>
       <a href="#" onClick={() => setIsModalOpened(true)}>{title}</a>
       {isModalOpened && (
         <Post onClose={() => setIsModalOpened(false)}/>

@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-flow: column;
+  align-items: end;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  resize: none;
+  min-height: 89px;
+  border: 1px solid var(--grayD9);
+  box-sizing: border-box;
+  border-radius: 3px 3px 0 0;
+}
+
+.button {
+  width: 220px;
+  height: 50px;
+  background: var(--orange);
+  border: none;
+  border-radius: 0 0 3px 0;
+}
