@@ -8,7 +8,7 @@ export function CardsList() {
 
   return (
     <ul className={styles.cardsList}>
-      {posts.map(postData => <Card data={postData}/>)}
+      {posts.map((postData, index) => <Card data={postData} key={index}/>)}
     </ul>
   );
 }
