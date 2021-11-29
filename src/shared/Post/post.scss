@@ -1,0 +1,20 @@
+.post {
+  margin: auto;
+  background: var(--white);
+  max-width: 960px;
+  border-radius: 7px;
+  padding: 52px 60px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+  color: var(--black);
+}
+
+.title {
+  margin-bottom: 22px;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 16px;
+}

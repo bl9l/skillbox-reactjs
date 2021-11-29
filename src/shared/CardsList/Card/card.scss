@@ -45,19 +45,6 @@
   }
 }
 
-.title {
-  font-size: 16px;
-  line-height: 19px;
-  margin-bottom: 9px;
-  max-width: fit-content;
-
-  @include utils.media-breakpoint-up(sm) {
-    font-size: 20px;
-    line-height: 23px;
-    margin-bottom: 10px;
-  }
-}
-
 .cardPublicationInfo {
   order: -1;
 

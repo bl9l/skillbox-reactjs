@@ -32,6 +32,13 @@ a {
   text-decoration: none;
 }
 
+#modal_root {
+  position: absolute;
+  top: 190px;
+  left: 0;
+  width: 100%;
+}
+
 @include display.make-display;
 @include utils.make-global-colors;
 @include utils.make-global-text;
