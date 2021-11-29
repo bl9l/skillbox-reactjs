@@ -9,17 +9,18 @@ import {useToken} from "./hooks/useToken";
 import {tokenContext} from "./contexts/tokenContext";
 import {UserContextProvider} from "./contexts/userContext";
 import {PostsContextProvider} from "./contexts/postsContext";
+import {Provider as ReduxProvider} from 'react-redux'
 import {createStore} from "redux";
-import {Provider} from 'react-redux'
 import {composeWithDevTools} from "redux-devtools-extension";
+import {rootReducer} from "./store";
 
-const store = createStore(() => {}, composeWithDevTools());
+export const store = createStore(rootReducer, composeWithDevTools());
 
 function AppComponent() {
   const [token] = useToken();
 
   return (
-    <Provider store={store}>
+    <ReduxProvider store={store}>
       <tokenContext.Provider value={token}>
         <UserContextProvider>
           <Layout>
@@ -32,7 +33,7 @@ function AppComponent() {
           </Layout>
         </UserContextProvider>
       </tokenContext.Provider>
-    </Provider>
+    </ReduxProvider>
   )
 }
 

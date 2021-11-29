@@ -1,12 +1,16 @@
-import React, {FormEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useRef} from 'react';
 import styles from './postcommentform.scss';
+import {useDispatch, useSelector} from "react-redux";
+import {RootState, updateComment} from "../../../store";
 
 interface IPostCommentFormProps {
   defaultReplyText?: string;
 }
 
 export function PostCommentForm({defaultReplyText = ''}: IPostCommentFormProps) {
-  const [value, setValue] = useState(defaultReplyText);
+  const value = useSelector<RootState, string>(state => state.commentText);
+  const dispatch = useDispatch();
+
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -21,8 +25,12 @@ export function PostCommentForm({defaultReplyText = ''}: IPostCommentFormProps) 
     console.log(value);
   }
 
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    dispatch(updateComment(e.target.value));
+  }
+
   return (<form className={styles.form} onSubmit={handleSubmit}>
-    <textarea className={styles.input} value={value} onChange={e => setValue(e.target.value)} ref={inputRef}/>
+    <textarea className={styles.input} value={value} onChange={handleChange} ref={inputRef}/>
     <button type='submit' className={styles.button}>Комментировать</button>
   </form>);
 }
