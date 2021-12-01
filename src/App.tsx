@@ -8,21 +8,25 @@ import {CardsList} from "./shared/CardsList";
 import {UserContextProvider} from "./contexts/userContext";
 import {PostsContextProvider} from "./contexts/postsContext";
 import {Provider as ReduxProvider} from 'react-redux'
-import {applyMiddleware, createStore, Middleware} from "redux";
+import {Action, applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {rootReducer} from "./store";
+import {rootReducer, RootState} from "./store";
+import thunk, {ThunkAction} from "redux-thunk";
 
-const logger: Middleware = store => next => action => {
-  console.log('dispatching:', action);
-  const result = next(action);
-  console.log('action result:', result);
-};
 
 export const store = createStore(rootReducer, composeWithDevTools(
-  applyMiddleware(logger),
+  applyMiddleware(thunk),
 ));
 
+const timeout = (ms: number): ThunkAction<void, RootState, unknown, Action<string>> => dispatch => {
+  dispatch({type: 'START'});
+  setTimeout(() => dispatch({type: 'FINISH'}), ms);
+}
+
 function AppComponent() {
+
+  // @ts-ignore
+  store.dispatch(timeout(3000));
 
   return (
     <ReduxProvider store={store}>
