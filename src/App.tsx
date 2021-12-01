@@ -8,11 +8,19 @@ import {CardsList} from "./shared/CardsList";
 import {UserContextProvider} from "./contexts/userContext";
 import {PostsContextProvider} from "./contexts/postsContext";
 import {Provider as ReduxProvider} from 'react-redux'
-import {createStore} from "redux";
+import {applyMiddleware, createStore, Middleware} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {rootReducer} from "./store";
 
-export const store = createStore(rootReducer, composeWithDevTools());
+const logger: Middleware = store => next => action => {
+  console.log('dispatching:', action);
+  const result = next(action);
+  console.log('action result:', result);
+};
+
+export const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(logger),
+));
 
 function AppComponent() {
 
