@@ -5,12 +5,11 @@ import './main.global.scss';
 import {Header} from "./shared/Header";
 import {Content} from "./shared/Content";
 import {CardsList} from "./shared/CardsList";
-import {UserContextProvider} from "./contexts/userContext";
 import {PostsContextProvider} from "./contexts/postsContext";
 import {Provider as ReduxProvider} from 'react-redux'
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {rootReducer, setToken} from "./store";
+import {rootReducer, setToken} from "./store/rootReducer";
 import thunk from "redux-thunk";
 
 
@@ -26,16 +25,14 @@ function AppComponent() {
 
   return (
     <ReduxProvider store={store}>
-      <UserContextProvider>
-        <Layout>
-          <Header/>
-          <Content>
-            <PostsContextProvider>
-              <CardsList/>
-            </PostsContextProvider>
-          </Content>
-        </Layout>
-      </UserContextProvider>
+      <Layout>
+        <Header/>
+        <Content>
+          <PostsContextProvider>
+            <CardsList/>
+          </PostsContextProvider>
+        </Content>
+      </Layout>
     </ReduxProvider>
   )
 }

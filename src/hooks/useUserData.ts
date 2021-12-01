@@ -1,25 +1,21 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
-import {useSelector} from "react-redux";
-import {selectToken} from "../store";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState, selectToken} from "../store/rootReducer";
+import {IUserData, meRequestAsync} from "../store/me/actions";
 
 
-interface IUserData {
-  name?: string;
-  iconImg?: string;
-}
 
 export function useUserData() {
   const token = useSelector(selectToken);
-  const [data, setData] = useState<IUserData>({});
+  const data = useSelector<RootState, IUserData>(state => state.me.data);
+  const loading = useSelector<RootState, boolean>(state => state.me.loading);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get('https://oauth.reddit.com/api/v1/me', {
-      headers: {authorization: `Bearer ${token}`}
-    })
-      .then(({data: userData}) => setData({name: userData.name, iconImg: userData.icon_img}))
-      .catch(console.error);
+    if (!token) { return; }
+    dispatch(meRequestAsync());
   }, [token]);
 
-  return [data];
+  return {data, loading};
 }
