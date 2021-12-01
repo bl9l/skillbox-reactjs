@@ -1,7 +1,8 @@
 import {Action, ActionCreator} from "redux";
 import {ThunkAction} from "redux-thunk";
-import {RootState, selectToken} from "../rootReducer";
+import {RootState} from "../rootReducer";
 import axios from "axios";
+import {selectToken} from "../token";
 
 
 export interface IUserData {

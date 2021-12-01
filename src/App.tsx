@@ -9,8 +9,9 @@ import {PostsContextProvider} from "./contexts/postsContext";
 import {Provider as ReduxProvider} from 'react-redux'
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {rootReducer, setToken} from "./store/rootReducer";
+import {rootReducer} from "./store/rootReducer";
 import thunk from "redux-thunk";
+import {saveToken} from "./store/token";
 
 
 export const store = createStore(rootReducer, composeWithDevTools(
@@ -20,7 +21,8 @@ export const store = createStore(rootReducer, composeWithDevTools(
 function AppComponent() {
 
   useEffect(() => {
-    store.dispatch(setToken(window?.localStorage.token || window.__token__));
+    // @ts-ignore
+    store.dispatch(saveToken(window?.localStorage.token || window.__token__));
   }, []);
 
   return (

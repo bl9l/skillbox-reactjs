@@ -1,7 +1,8 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState, selectToken} from "../store/rootReducer";
+import {RootState} from "../store/rootReducer";
 import {IUserData, meRequestAsync} from "../store/me/actions";
+import {selectToken} from "../store/token";
 
 
 
