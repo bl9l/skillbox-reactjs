@@ -7,7 +7,7 @@ export const indexTemplate = (content, token) => `
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reddit</title>
-    <script src="/static/client.js" type="application/javascript"></script>
+    <script type="module" src="/static/client.js" type="application/javascript"></script>
     <script >
         window.__token__ = '${token}'
     </script>

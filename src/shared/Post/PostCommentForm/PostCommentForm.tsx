@@ -1,28 +1,24 @@
-import React, {FormEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useRef} from 'react';
 import styles from './postcommentform.scss';
 
 interface IPostCommentFormProps {
-  defaultReplyText?: string;
+  value?: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void,
+  onSubmit: (e: FormEvent) => void
 }
 
-export function PostCommentForm({defaultReplyText = ''}: IPostCommentFormProps) {
-  const [value, setValue] = useState(defaultReplyText);
+export function PostCommentForm({value = '', onChange, onSubmit}: IPostCommentFormProps) {
+
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
     // переводим каретку в конец строки
-    inputRef.current?.setSelectionRange(defaultReplyText?.length || 0, defaultReplyText?.length || 0);
+    inputRef.current?.setSelectionRange(value?.length || 0, value?.length || 0);
   }, []);
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
-    console.log(value);
-  }
-
-  return (<form className={styles.form} onSubmit={handleSubmit}>
-    <textarea className={styles.input} value={value} onChange={e => setValue(e.target.value)} ref={inputRef}/>
+  return (<form className={styles.form} onSubmit={onSubmit}>
+    <textarea className={styles.input} value={value} onChange={onChange} ref={inputRef}/>
     <button type='submit' className={styles.button}>Комментировать</button>
   </form>);
 }

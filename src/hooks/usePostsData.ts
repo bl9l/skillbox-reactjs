@@ -1,7 +1,8 @@
-import {useContext, useEffect, useState} from "react";
-import {tokenContext} from "../contexts/tokenContext";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import {ICardData} from "../shared/CardsList/Card";
+import {useSelector} from "react-redux";
+import {selectToken} from "../store";
 
 export interface IPostData {
   data: {
@@ -32,7 +33,7 @@ const mapRedditResponse = ({data}: IPostData): ICardData => ({
 });
 
 export function usePostsData() {
-  const token = useContext(tokenContext);
+  const token = useSelector(selectToken);
   const [posts, setPosts] = useState<ICardData[]>([]);
 
   useEffect(() => {
