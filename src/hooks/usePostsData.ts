@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {ICardData} from "../shared/CardsList/Card";
 import {useSelector} from "react-redux";
-import {selectToken} from "../store";
+import {selectToken} from "../store/token";
 
 export interface IPostData {
   data: {

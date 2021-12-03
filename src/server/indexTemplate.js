@@ -1,4 +1,4 @@
-export const indexTemplate = (content, token) => `
+export const indexTemplate = (content, token = '') => `
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@ export const indexTemplate = (content, token) => `
     <title>Reddit</title>
     <script type="module" src="/static/client.js" type="application/javascript"></script>
     <script >
-        window.__token__ = '${token}'
+        localStorage.token = window.__token__ = localStorage.token || '${token}'
     </script>
 </head>
 <body>
