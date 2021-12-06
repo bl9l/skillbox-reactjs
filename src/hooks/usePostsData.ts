@@ -37,7 +37,7 @@ export function usePostsData() {
   const [posts, setPosts] = useState<ICardData[]>([]);
 
   useEffect(() => {
-    axios.get('https://oauth.reddit.com/best.json', {
+    axios.get('https://oauth.reddit.com/rising/', {
       headers: {authorization: `Bearer ${token}`, accept: 'application/json'},
     })
       .then(({data: {data}}) => {
