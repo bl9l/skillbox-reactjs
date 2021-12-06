@@ -1,11 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './cardslist.scss';
 import {Card, ICardData} from "./Card";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {selectToken} from "../../store/token";
-import {IPostData} from "../../hooks/usePostsData";
 
+
+export interface IPostData {
+  data: {
+    id: string;
+    title: string;
+    score: number,
+    preview?: {
+      images: {
+        source: {url: string};
+      }[]
+    },
+    author: string;
+  };
+}
 
 const mapRedditResponse = ({data}: IPostData): ICardData => ({
   id: data.id,
@@ -27,19 +40,28 @@ export function CardsList() {
   const [posts, setPosts] = useState<ICardData[]>([]);
   const [pending, setPending] = useState(false);
   const [errorLoading, setErrorLoading] = useState('');
+  const [nextAfter, setNextAfter] = useState('');
+
+  const bottomAnchor = useRef<HTMLDivElement>(null);
+
+
 
   useEffect(() => {
-    if (!token) { return; }
 
     async function load() {
       try {
         setPending(true);
         setErrorLoading('');
-        const {data: {data: {children}}} = await axios.get('https://oauth.reddit.com/rising/', {
+        const {data: {data: {after, children: newChildren}}} = await axios.get('https://oauth.reddit.com/best.json', {
           headers: {authorization: `Bearer ${token}`, accept: 'application/json'},
+          params: {
+            limit: 10,
+            after: nextAfter,
+          }
         });
         setPending(false);
-        setPosts(children.map(mapRedditResponse));
+        setNextAfter(after);
+        setPosts(prevChildren => prevChildren.concat(...newChildren.map(mapRedditResponse)));
       } catch (error) {
         setPending(false);
         setErrorLoading('Ошибка загрузки');
@@ -47,8 +69,23 @@ export function CardsList() {
       }
     }
 
-    load();
-  }, [token]);
+    const observer = new IntersectionObserver(([{isIntersecting}]) => {
+      if (!token || !isIntersecting) { return; }
+      load();
+    }, {
+      rootMargin: '100px',
+    });
+
+    if (bottomAnchor.current) {
+      observer.observe(bottomAnchor.current);
+    }
+
+    return () => {
+      if (bottomAnchor.current) {
+        observer.unobserve(bottomAnchor.current);
+      }
+    }
+  }, [nextAfter, bottomAnchor.current, token]);
 
   return (
     <ul className={styles.cardsList}>
@@ -56,7 +93,9 @@ export function CardsList() {
         <div style={{textAlign: 'center'}}>Пусто (╯°□°）╯︵ ┻━┻</div>
       )}
 
-      {posts.map((postData, index) => <Card data={postData} key={index}/>)}
+      {posts.map(postData => <Card data={postData} key={postData.id}/>)}
+
+      <div ref={bottomAnchor}/>
 
       {(pending || errorLoading) && (
         <div style={{textAlign: 'center'}}>
