@@ -21,7 +21,7 @@ export interface IPostData {
 }
 
 const mapRedditResponse = ({data}: IPostData): ICardData => ({
-  id: data.id,
+  id: Math.random().toFixed(36),
   title: data.title,
   hoursSinsLastView: null,
   hoursSinsPublication: null,
@@ -35,12 +35,17 @@ const mapRedditResponse = ({data}: IPostData): ICardData => ({
 });
 
 export function CardsList() {
+  const maxAutoLoadsCount = 3;
+
 
   const token = useSelector(selectToken);
   const [posts, setPosts] = useState<ICardData[]>([]);
   const [pending, setPending] = useState(false);
   const [errorLoading, setErrorLoading] = useState('');
   const [nextAfter, setNextAfter] = useState('');
+  const [loadMorePressed, setLoadMorePressed] = useState(true);
+  const [loadsCount, setLoadsCount] = useState(0);
+  const [allLoaded, setAllLoaded] = useState(false);
 
   const bottomAnchor = useRef<HTMLDivElement>(null);
 
@@ -55,13 +60,24 @@ export function CardsList() {
         const {data: {data: {after, children: newChildren}}} = await axios.get('https://oauth.reddit.com/best.json', {
           headers: {authorization: `Bearer ${token}`, accept: 'application/json'},
           params: {
-            limit: 10,
+            limit: 6,
             after: nextAfter,
           }
         });
         setPending(false);
         setNextAfter(after);
         setPosts(prevChildren => prevChildren.concat(...newChildren.map(mapRedditResponse)));
+
+
+        if (loadsCount === (maxAutoLoadsCount - 1)) {
+          setLoadsCount(0);
+          setLoadMorePressed(false);
+        } else {
+          setLoadsCount(loadsCount + 1);
+        }
+        if (after === null) {
+          setAllLoaded(true);
+        }
       } catch (error) {
         setPending(false);
         setErrorLoading('Ошибка загрузки');
@@ -70,7 +86,13 @@ export function CardsList() {
     }
 
     const observer = new IntersectionObserver(([{isIntersecting}]) => {
-      if (!token || !isIntersecting) { return; }
+      if (
+        allLoaded ||
+        !token ||
+        !isIntersecting ||
+        !loadMorePressed
+      ) { return; }
+      console.log('load');
       load();
     }, {
       rootMargin: '100px',
@@ -85,7 +107,7 @@ export function CardsList() {
         observer.unobserve(bottomAnchor.current);
       }
     }
-  }, [nextAfter, bottomAnchor.current, token]);
+  }, [nextAfter, bottomAnchor.current, token, loadMorePressed, loadsCount, allLoaded]);
 
   return (
     <ul className={styles.cardsList}>
@@ -95,7 +117,21 @@ export function CardsList() {
 
       {posts.map(postData => <Card data={postData} key={postData.id}/>)}
 
-      <div ref={bottomAnchor}/>
+      {allLoaded ? (
+        <div style={{textAlign: "center"}}>
+          Всё (￣o￣) . z Z
+        </div>
+      ) : (
+        <div ref={bottomAnchor}/>
+      )}
+
+      {(!loadMorePressed && !allLoaded) && (
+        <div style={{display: "flex", justifyContent: 'center'}}>
+          <button onClick={() => setLoadMorePressed(true)}>
+            Загрузить ещё
+          </button>
+        </div>
+      )}
 
       {(pending || errorLoading) && (
         <div style={{textAlign: 'center'}}>
