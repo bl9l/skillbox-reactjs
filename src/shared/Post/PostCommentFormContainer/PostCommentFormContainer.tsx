@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState, updateComment} from "../../../store/rootReducer";
 import {PostCommentForm} from "../PostCommentForm";
@@ -11,9 +11,9 @@ export function PostCommentFormContainer() {
     dispatch(updateComment(e.target.value));
   }
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    console.log(value);
+  function handleSubmit(e: {comment: string}) {
+    console.log(e);
+    alert('React Submit');
   }
 
   return (<PostCommentForm
