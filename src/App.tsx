@@ -5,7 +5,6 @@ import './main.global.scss';
 import {Header} from "./shared/Header";
 import {Content} from "./shared/Content";
 import {CardsList} from "./shared/CardsList";
-import {PostsContextProvider} from "./contexts/postsContext";
 import {Provider as ReduxProvider} from 'react-redux'
 import {applyMiddleware, createStore} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
@@ -30,9 +29,7 @@ function AppComponent() {
       <Layout>
         <Header/>
         <Content>
-          <PostsContextProvider>
-            <CardsList/>
-          </PostsContextProvider>
+          <CardsList/>
         </Content>
       </Layout>
     </ReduxProvider>
