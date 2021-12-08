@@ -4,6 +4,9 @@ import {indexTemplate} from './indexTemplate';
 import {App} from "../App";
 import axios from 'axios';
 
+import jsdom from 'jsdom';
+global.document = (new jsdom.JSDOM).window.document;
+
 const app = express();
 
 app.use('/static', express.static('./dist/client'));
