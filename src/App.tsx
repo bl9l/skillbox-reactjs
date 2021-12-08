@@ -11,6 +11,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {rootReducer} from "./store/rootReducer";
 import thunk from "redux-thunk";
 import {saveToken} from "./store/token";
+import {BrowserRouter} from 'react-router-dom';
 
 
 export const store = createStore(rootReducer, composeWithDevTools(
@@ -26,12 +27,14 @@ function AppComponent() {
 
   return (
     <ReduxProvider store={store}>
-      <Layout>
-        <Header/>
-        <Content>
-          <CardsList/>
-        </Content>
-      </Layout>
+      <BrowserRouter>
+        <Layout>
+          <Header/>
+          <Content>
+            <CardsList/>
+          </Content>
+        </Layout>
+      </BrowserRouter>
     </ReduxProvider>
   )
 }
