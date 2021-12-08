@@ -11,7 +11,8 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {rootReducer} from "./store/rootReducer";
 import thunk from "redux-thunk";
 import {saveToken} from "./store/token";
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Post} from "./shared/Post";
 
 
 export const store = createStore(rootReducer, composeWithDevTools(
@@ -32,6 +33,9 @@ function AppComponent() {
           <Header/>
           <Content>
             <CardsList/>
+            <Routes>
+              <Route path='/posts/:id' element={<Post/>}/>
+            </Routes>
           </Content>
         </Layout>
       </BrowserRouter>

@@ -1,20 +1,17 @@
 import React, {useState} from 'react';
 import styles from './cardtitle.scss';
 import {Post} from "../../../Post";
+import {Link} from "react-router-dom";
 
 interface ICardTitleProps {
   title: string;
 }
 
 export function CardTitle({title}: ICardTitleProps) {
-  const [isModalOpened, setIsModalOpened] = useState(false);
 
   return (
     <h2 className={styles.title}>
-      <a href="#" onClick={() => setIsModalOpened(true)}>{title}</a>
-      {isModalOpened && (
-        <Post onClose={() => setIsModalOpened(false)}/>
-      )}
+      <Link to="/posts/1">{title}</Link>
     </h2>
   );
 }
