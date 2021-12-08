@@ -11,7 +11,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {rootReducer} from "./store/rootReducer";
 import thunk from "redux-thunk";
 import {saveToken} from "./store/token";
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import {Post} from "./shared/Post";
 
 
@@ -32,9 +32,12 @@ function AppComponent() {
         <Layout>
           <Header/>
           <Content>
-            <CardsList/>
             <Routes>
-              <Route path='/posts/:id' element={<Post/>}/>
+              <Route path='/' element={<Navigate to="/posts" />}/>
+              <Route path='/auth' element={<Navigate to="/posts" />}/>
+              <Route path='/posts' element={<CardsList/>}>
+                <Route path=':id' element={<Post/>}/>
+              </Route>
             </Routes>
           </Content>
         </Layout>
