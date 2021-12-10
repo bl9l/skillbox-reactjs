@@ -4,6 +4,7 @@ import {Card, ICardData} from "./Card";
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {selectToken} from "../../store/token";
+import { Outlet } from 'react-router-dom';
 
 
 export interface IPostData {
@@ -109,7 +110,8 @@ export function CardsList() {
     }
   }, [nextAfter, bottomAnchor.current, token, loadMorePressed, loadsCount, allLoaded]);
 
-  return (
+  return (<>
+    <Outlet/>
     <ul className={styles.cardsList}>
       {(posts.length === 0 && !pending && !errorLoading) && (
         <div style={{textAlign: 'center'}}>Пусто (╯°□°）╯︵ ┻━┻</div>
@@ -140,5 +142,5 @@ export function CardsList() {
         </div>
       )}
     </ul>
-  );
+  </>);
 }

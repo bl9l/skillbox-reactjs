@@ -2,17 +2,17 @@ import React, {useEffect, useRef} from 'react';
 import styles from './post.scss';
 import {createPortal} from "react-dom";
 import {PostCommentFormContainer} from "./PostCommentFormContainer";
+import { useNavigate } from "react-router-dom";
 
-interface IPostProps {
-  onClose?: () => void
-}
 
-export function Post({onClose}: IPostProps) {
+export function Post() {
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (!ref.current?.contains(e.target as Node)) {
-        onClose?.();
+        navigate('/');
       }
     };
     document.addEventListener('click', handleClick);
