@@ -9,9 +9,10 @@
   "scripts": {
     "build": "npm run build:prod",
     "start": "env CLIENT_ID=Pfk5HzecZrUt__lFNxKkVA SECRET=Cgc7-DaxxyIyRLwko7eg0YFYXUVgug node ./dist/server/server.js",
+    "build:prod": "env NODE_ENV=production CLIENT_ID=Pfk5HzecZrUt__lFNxKkVA SECRET=Cgc7-DaxxyIyRLwko7eg0YFYXUVgug webpack --config webpack.config.js",
+
     "dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw SECRET=Cgc7-DaxxyIyRLwko7eg0YFYXUVgug node bin/dev.js",
-    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
+    "build:dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw SECRET=TIrdQAGdzenFLxXpg1f6c-uJtah-Qw webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
