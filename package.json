@@ -8,10 +8,10 @@
   },
   "scripts": {
     "build": "npm run build:prod",
-    "start": "node ./dist/server/server.js",
-    "build:dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw webpack --config webpack.config.js",
-    "build:prod": "env NODE_ENV=production CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw webpack --config webpack.config.js",
-    "dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw node bin/dev.js",
+    "start": "env CLIENT_ID=Pfk5HzecZrUt__lFNxKkVA node ./dist/server/server.js",
+    "build:dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw SECRET=TIrdQAGdzenFLxXpg1f6c-uJtah-Qw webpack --config webpack.config.js",
+    "build:prod": "env NODE_ENV=production CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw SECRET=TIrdQAGdzenFLxXpg1f6c-uJtah-Qw webpack --config webpack.config.js",
+    "dev": "env NODE_ENV=development CLIENT_ID=9WUvi6FJWWNchxUCv1RYMw SECRET=Cgc7-DaxxyIyRLwko7eg0YFYXUVgug node bin/dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

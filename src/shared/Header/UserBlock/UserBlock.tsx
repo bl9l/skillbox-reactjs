@@ -13,7 +13,7 @@ interface IUserBlockProps {
 export function UserBlock({avatarSrc, username, loading}: IUserBlockProps) {
   return (
     <a
-      href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=qweasdzxc&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity`}
+      href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=qweasdzxc&redirect_uri=https://skillbox-bogdan.herokuapp.com/auth&duration=permanent&scope=read submit identity`}
       className={styles.userBox}
     >
       {avatarSrc
