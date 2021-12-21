@@ -1,14 +1,36 @@
 import React, {ChangeEvent} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState, updateComment} from "../../../store/rootReducer";
 import {PostCommentForm} from "../PostCommentForm";
+import {action, Action, createStore, createTypedHooks} from "easy-peasy";
+
+
+type Comment = string;
+
+interface StoreModel {
+  comment: Comment;
+  setComment: Action<CommentModel, Comment>
+}
+
+interface CommentModel {
+  comment: Comment,
+}
+
+export const store = createStore<StoreModel>({
+  comment: '',
+  setComment: action((state, payload) => {
+    state.comment = payload;
+  })
+});
+
+const commentHooks = createTypedHooks<StoreModel>();
+const useStoreState = commentHooks.useStoreState;
+const useStoreDispatch = commentHooks.useStoreDispatch;
 
 export function PostCommentFormContainer() {
-  const value = useSelector<RootState, string>(state => state.commentText);
-  const dispatch = useDispatch();
+  const value = useStoreState(state => state.comment);
+  const {setComment} = useStoreDispatch();
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    dispatch(updateComment(e.target.value));
+    setComment(e.target.value);
   }
 
   function handleSubmit(e: {comment: string}) {
@@ -16,9 +38,11 @@ export function PostCommentFormContainer() {
     alert('React Submit');
   }
 
-  return (<PostCommentForm
-    value={value}
-    onChange={handleChange}
-    onSubmit={handleSubmit}
-  />);
+  return (
+    <PostCommentForm
+      value={value}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+    />
+  );
 }
